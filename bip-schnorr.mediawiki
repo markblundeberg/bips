@@ -119,12 +119,12 @@ Input:
 
 The signature is valid if and only if the algorithm below does not fail.
 * Let ''P = point(pk)''; fail if ''point(pk)'' fails.
-* Let ''r = int(sig[0:32])''; fail if ''r &ge; p''.
+* Let ''sig0 = sig[0:32]''.
 * Let ''s = int(sig[32:64])''; fail if ''s &ge; n''.
-* Let ''e = int(hash(bytes(r) || bytes(P) || m)) mod n''.
+* Let ''e = int(hash(sig0 || bytes(P) || m)) mod n''.
 * Let ''R = sG - eP''.
 * Fail if ''infinite(R)''.
-* Fail if ''jacobi(y(R)) &ne; 1'' or ''x(R) &ne; r''.
+* Fail if ''jacobi(y(R)) &ne; 1'' or ''bytes(x(R)) &ne; sig0''.
 
 ==== Batch Verification ====
 
